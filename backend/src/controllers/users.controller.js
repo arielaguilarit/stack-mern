@@ -6,14 +6,31 @@ UsersController.getUsers = async (req,res) => {
     res.json(users)
 }
 
-UsersController.createUser = (req,res) => { 
-    res.json({message: 'POST Request'})
+UsersController.createUser = async (req,res) => { 
+    const { username } = req.body;
+    const newUser = new User ({
+        username: username
+    });
+    await newUser.save();
+    res.json({message: 'User Saved'})
 }
 
-UsersController.getUser = (req,res) => res.json({message: 'GET Request'})
+UsersController.getUser = async (req,res) => {
+    const user = await User.findById(req.params.id);
+    res.json(user)
+}
 
-UsersController.updateUser = (req,res) => res.json({message: 'PUT Request'})
+UsersController.updateUser = async (req,res) => {
+    const { username } = req.body;
+    await User.findOneAndUpdate(req.params.id, {
+       username: username
+    });
+    res.json({message: 'User Edit'})
+}
 
-UsersController.deleteUser = (req,res) => res.json({message: 'DELETE Request'})
+UsersController.deleteUser = async (req,res) => {
+    await User.findByIdAndDelete(req.params.id);
+    res.json({message: 'User Delete'})
+}
 
 module.exports = UsersController

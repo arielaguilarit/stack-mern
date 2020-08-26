@@ -5,6 +5,7 @@ NotesController.getNotes = async (req,res) => {
     const notes = await Note.find();
     res.json(notes)
 }
+
 NotesController.createNotes = async (req,res) => {
     const { title, content, author, date } = req.body;
     const newNote = new Note ({
@@ -13,15 +14,32 @@ NotesController.createNotes = async (req,res) => {
         author: author,
         date: date
     });
-    console.log(newNote);
     await newNote.save();
     res.json({message: 'POST Request'})
 }
 
-NotesController.getNote = (req,res) => res.json({message: 'GET Request'})
+NotesController.getNote = async (req,res) => {
+    //console.log(req.params.id);
+    const note = await Note.findById(req.params.id);
+    //console.log(note);
+    //res.json({message: 'GET Request'})
+    res.json(note);
+}
 
-NotesController.updateNote = (req,res) => res.json({message: 'PUT Request'})
+NotesController.updateNote = async (req,res) => {
+    const { title, content, author, date } = req.body;
+    await Note.findOneAndUpdate(req.params.id, {
+        title: title,
+        content: content,
+        author: author,
+        date: date
+    });
+    res.json({message: 'PUT Request'})
+}
 
-NotesController.deleteNote = (req,res) => res.json({message: 'DELETE Request'})
+NotesController.deleteNote = async (req,res) => {
+    await Note.findByIdAndDelete(req.params.id);
+    res.json({message: 'DELETE Request'})
+}
 
 module.exports = NotesController

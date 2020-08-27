@@ -10,3 +10,7 @@
 - npx nodemon src/index.js # ejecutar nodemon con npx
 - npm run dev # para ejecutar nodemon con npm desde package.json
 
+# configuracion frontend
+- npx create-react-app frontend-reactjs
+ 
+

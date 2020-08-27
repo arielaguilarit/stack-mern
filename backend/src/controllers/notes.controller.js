@@ -15,7 +15,7 @@ NotesController.createNotes = async (req,res) => {
         date: date
     });
     await newNote.save();
-    res.json({message: 'POST Request'})
+    res.json({message: 'Note Saved!!'})
 }
 
 NotesController.getNote = async (req,res) => {
@@ -34,12 +34,12 @@ NotesController.updateNote = async (req,res) => {
         author: author,
         date: date
     });
-    res.json({message: 'PUT Request'})
+    res.json({message: 'Note Updating!!!'})
 }
 
 NotesController.deleteNote = async (req,res) => {
     await Note.findByIdAndDelete(req.params.id);
-    res.json({message: 'DELETE Request'})
+    res.json({message: 'Note Deleting'})
 }
 
 module.exports = NotesController

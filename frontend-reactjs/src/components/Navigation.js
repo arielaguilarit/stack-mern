@@ -8,7 +8,7 @@ export default class Navigation extends Component {
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div className="container">
                     <Link className="navbar-brand" to="/">
-                        NotesApp
+                        CRUD NOTES APP
                     </Link>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
@@ -21,13 +21,13 @@ export default class Navigation extends Component {
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/user">
-                                    Create User
+                                <Link className="nav-link" to="/note">
+                                    Create Notes
                                 </Link>
                             </li>
                             <li className="nav-item">
-                            <Link className="nav-link" to="/note">
-                                    Create Notes
+                                <Link className="nav-link" to="/user">
+                                    Create User
                                 </Link>
                             </li>
                         </ul>
